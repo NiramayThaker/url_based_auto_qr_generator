@@ -21,18 +21,11 @@
     
     <div class="form-container">
         <h1>Get Vechicle Detail For Insaurances</h1>
-        <form method="get" id="insurance-form">
+        <form method="post" id="insurance-form">
+            {% csrf_token %}
+
             <div class="input-field">
-                <label for="firstName">First Name:</label>
-                <input type="text" name="first_name" id="first_name" placeholder="Enter your first name">
-            </div>
-            <div class="input-field">
-                <label for="bloodGrp">Blood Group:</label>
-                <input type="text" name="blood_grp" id="blood_grp" placeholder="Enter your blood group">
-            </div>
-            <div class="input-field">
-                <label for="contactNumber">Contact Number:</label>
-                <input type="tel" name="contact-no" id="contact-no" placeholder="Enter your contact number">
+                {{form}}
             </div>
             <button type="submit" id="insurance-btn">Submit</button>
         </form>
