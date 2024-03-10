@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "styles/style" %}">
+</head>
+
+<body>
+
+    <div class="container">
+        <a href="../templates/index.html">
+            <img src="E:\Wallpaper\blur red-blue.jpg" alt="img" height="120px" width="150px" style="margin-right: 50px;">
+        </a>
+        <nav>
+            <ul>
+                <a href="../templates/puc-form.html"><li>PUC</li></a>
+                <a href="../templates/insurance-form.html"><li>Insurance</li></a>
+                <a href="../templates/passing-form.html"><li>passing</li></a>
+                <a href="../templates/permit-form.html"><li>permit</li></a>
+                <a href="../templates/tax-form.html"><li>tax</li></a>
+                <a href="../templates/licence-form.html"><li>licence</li></a>
+                <a href="../templates/show-data.html"><li>Show Data</li></a>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="form-container">
+        <h1>Accounting</h1>
+        <form method="get" id="accounting-form">
+            <div class="input-field">
+                <label for="firstName">Name</label>
+                <input type="text" name="first_name" id="first_name" placeholder="Enter your first name">
+            </div>
+
+            <div class="input-field">
+                <label for="amount-given">Amount given</label>
+                <input type="number" name="amount-given" id="amount-given" placeholder="Enter amount you have given">
+            </div>
+
+            <div class="input-field">
+                <label for="amount-given">Amount pending</label>
+                <input type="number" name="amount-pending" id="amount-pending" placeholder="Enter amount you have pending">
+            </div>
+
+            <div class="input-field">
+                <label for="amount-profit">Profit Amount</label>
+                <input type="number" name="amount-profit" id="amount-profit" placeholder="Enter your profit amount">
+            </div>
+
+            <div class="input-field">
+                <label for="contactNumber">Contact Number:</label>
+                <input type="tel" name="contact-no" id="contact-no" placeholder="Enter your contact number">
+            </div>
+            <button type="submit" id="accounting-btn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        require('../accounting_btn_events.js');
+    </script>
+    <!-- <script type="text/javascript" src="btn_events.js" defer></script> -->
+
+</body>
+</html>
