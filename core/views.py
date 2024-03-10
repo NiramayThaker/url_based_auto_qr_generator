@@ -10,9 +10,9 @@ def home(request):
     if request.method == "POST":
         form = UserInfoForm(request.POST)
         if form.is_valid():
-            print(f"\n\n\n\n\n {request.user.id}\n\n\n\n\n")
-            generate_qr(request.user.id, request.user)
             form.save()
+            id = UserInfo.objects.values_list('id', flat=True)
+            generate_qr(id, request.user)
 
             return redirect('home')
 
@@ -26,10 +26,7 @@ def generate_qr(id, username):
 
 
 def user_info(request, pk):
-    user_info = UserInfo.objects.get(id=1)
-    # user_info = "x"
-    
-    # context = {"user_info": user_info}
-    # return render('request', 'user.html')
+    user_info = UserInfo.objects.get(id=pk)
 
-    return HttpResponse(pk)
+    context = {'user_info': user_info}
+    return render(request, 'user.html', context=context)
