@@ -6,12 +6,13 @@ import qrcode
 
 def home(request):
     form = UserInfoForm()
+    id = UserInfo.objects.values_list('user_id', flat=True)[1]
+    print(f"\n\n\n\n {id} \n\n\n\n")
 
     if request.method == "POST":
         form = UserInfoForm(request.POST)
         if form.is_valid():
             form.save()
-            id = UserInfo.objects.values_list('id', flat=True)
             generate_qr(id, request.user)
 
             return redirect('home')
