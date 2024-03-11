@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .models import UserInfo
 from django.contrib.auth.models import User
-from .forms import UserInfoForm
+from django.contrib.auth.decorators import login_required
+from .forms import UserInfoForm, RegistrationForm
 import qrcode
 
 
+@login_required(login_url="login")
 def home(request):
     form = UserInfoForm()
     # id = UserInfo.objects.values_list('user_id', flat=True)[0]
@@ -12,8 +14,6 @@ def home(request):
 
     user_name = User.objects.get(id=request.user.id)
     print(f"\n\n\n\n\n\n\n {user_name} \n\n\n\n\n\n\n")
-    # uuid = UserInfo.objects.get(name=user_name)
-    # print(f"\n\n\n\n\n\n\n {uuid.user_id} \n\n\n\n\n\n\n")
 
     if request.method == "POST":
         form = UserInfoForm(request.POST)
@@ -24,7 +24,7 @@ def home(request):
             return redirect('home')
 
     context = {'form': form}
-    return render(request, "form.html", context=context)
+    return render(request, "core/form.html", context=context)
 
 
 def generate_qr(id, username):
@@ -38,8 +38,16 @@ def user_info(request, pk):
     context = {'user_info': user_info}
     return render(request, 'user.html', context=context)
 
+
 def info(request):
     user_info = UserInfo.objects.get(id=1)
 
     context = {'user_info': user_info}
     return render(request, 'user.html', context=context)
+
+
+def sign_up(reqeuest):
+    form = RegistrationForm()
+
+    context = {"form": form}
+    return render(reqeuest, "registration/signup.html", context=context)
